@@ -1,11 +1,10 @@
 package config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
+import java.util.EnumSet;
 
 /**
  * Created by ssc on 2017/6/4.
@@ -26,6 +25,10 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
+        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter",new CharacterEncodingFilter());
+        encodingFilter.setInitParameter("encoding", "utf-8");
+        encodingFilter.setInitParameter("forceEncoding", "true");
+        encodingFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, "/*");
     }
 
     @Override
@@ -34,4 +37,10 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         registration.addMapping("/");
         registration.setMultipartConfig(new MultipartConfigElement("tmp/SAD/uploads", 20 * 1024 * 1024, 40 * 1024 * 1024, 0));
     }
+
+    @Override
+    protected FilterRegistration.Dynamic registerServletFilter(ServletContext servletContext, Filter filter) {
+        return super.registerServletFilter(servletContext, filter);
+    }
+
 }

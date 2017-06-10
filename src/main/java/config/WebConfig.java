@@ -3,6 +3,8 @@ package config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -11,7 +13,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.nio.charset.Charset;
+import java.util.List;
+
 /**
+ * Java 配置Spring,替代web.xml
  * Created by ssc on 2017/6/3.
  */
 @Configuration
@@ -29,14 +35,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public MultipartResolver multipartResolver(){
+    public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
     }
-
 
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        super.configureMessageConverters(converters);
+        StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+        converters.add(converter);
     }
 }
