@@ -8,7 +8,7 @@
     <artifactId>ssc</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!--说明打包类型，不配置部署到tomcat时会失败-->
+    <!--配置打包类型，不配置部署到tomcat时会失败-->
     <packaging>war</packaging>
 
     <name>spring-in-action-demo</name>

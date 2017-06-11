@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -24,6 +25,7 @@ import java.util.List;
 @Configuration
 @ComponentScan(basePackages = "core")
 @EnableWebMvc
+@EnableScheduling//开启计划任务
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean

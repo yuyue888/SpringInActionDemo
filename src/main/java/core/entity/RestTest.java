@@ -7,9 +7,15 @@ import java.util.Date;
  */
 public class RestTest {
 
+    public enum SEX{
+        MAN,WOMAN
+    }
+
     private String name;
 
     private int age;
+
+    private SEX sexType;
 
     private Date date = new Date();
 
@@ -35,5 +41,13 @@ public class RestTest {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public SEX getSexType() {
+        return sexType;
+    }
+
+    public void setSexType(SEX sexType) {
+        this.sexType = sexType;
     }
 }

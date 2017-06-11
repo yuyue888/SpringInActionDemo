@@ -19,6 +19,7 @@ public class TestController {
         RestTest restTest = new RestTest();
         restTest.setAge(20);
         restTest.setName("王二狗");
+        restTest.setSexType(RestTest.SEX.MAN);
         return restTest;
     }
 
