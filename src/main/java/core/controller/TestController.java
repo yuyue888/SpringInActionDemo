@@ -1,7 +1,12 @@
 package core.controller;
 
+import core.entity.Goods;
 import core.entity.RestTest;
+import core.service.GoodService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by ssc on 2017/6/4.
@@ -27,4 +32,12 @@ public class TestController {
     public RestTest postTest(@RequestBody RestTest restTest){
         return restTest;
     }
+
+    @Autowired
+    private GoodService goodService;
+    @RequestMapping(value="/goods",method = RequestMethod.GET)
+    public List<Goods> postTest(){
+        return goodService.findAllGoods();
+    }
+
 }

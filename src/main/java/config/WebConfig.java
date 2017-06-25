@@ -23,7 +23,7 @@ import java.util.List;
  * Created by ssc on 2017/6/3.
  */
 @Configuration
-@ComponentScan(basePackages = "core")
+@ComponentScan(basePackages = {"core","config"})
 @EnableWebMvc
 @EnableScheduling//开启计划任务
 public class WebConfig extends WebMvcConfigurerAdapter {
