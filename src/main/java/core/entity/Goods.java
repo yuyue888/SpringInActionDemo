@@ -1,26 +1,17 @@
 package core.entity;
 
-import javax.persistence.*;
-
 /**
- * Created by ssc on 2017/6/26.
+ * Created by ssc on 2017/7/12.
  */
-@Entity
-@Table(name = "goods")
 public class Goods {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "gid")
-    private Integer gid;
-
-    @Column(name = "gname")
+    private int gid;
     private String gname;
 
-    public Integer getGid() {
+    public int getGid() {
         return gid;
     }
 
-    public void setGid(Integer gid) {
+    public void setGid(int gid) {
         this.gid = gid;
     }
 

@@ -1,13 +1,8 @@
 package core.service;
 
-import config.WebConfig;
 import core.entity.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 /**
  * Created by ssc on 2017/6/3.
