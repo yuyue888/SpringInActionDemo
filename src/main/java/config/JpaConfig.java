@@ -45,9 +45,9 @@ public class JpaConfig {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setShowSql(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(adapter);
+        factory.setJpaVendorAdapter(adapter); //指定使用哪个厂商的JPA实现，本项目使用Hibernate
         factory.setDataSource(dataSource());
-        factory.setPackagesToScan("core");
+        factory.setPackagesToScan("core"); //指定扫描实体的架包
         factory.setJpaProperties(properties());
         factory.afterPropertiesSet();
         return factory.getObject();
