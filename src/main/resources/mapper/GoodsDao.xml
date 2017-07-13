@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="core.dao.GoodsDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="core.entity.Goods">
+        <result column="gid" property="gid"/>
+        <result column="gname" property="gname"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `gid`,
+        `gname`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="goods.gid" parameterType="core.entity.Goods">
+        INSERT INTO goods (
+            `gid`,
+            `gname`
+        ) VALUES (
+            #{gid},
+            #{gname}
+        )
+    </insert>
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE goods
+        <set>
+            <if test="goods.gid != null"> `gid` = #{goods.gid}, </if>
+            <if test="goods.gname != null"> `gname` = #{goods.gname} </if>
+        </set>
+        WHERE gid = #{goods.gid}
+    </update>
+</mapper>
+

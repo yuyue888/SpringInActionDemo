@@ -4,14 +4,15 @@ package core.entity;
  * Created by ssc on 2017/7/12.
  */
 public class Goods {
-    private int gid;
+    private Integer gid;
+
     private String gname;
 
-    public int getGid() {
+    public Integer getGid() {
         return gid;
     }
 
-    public void setGid(int gid) {
+    public void setGid(Integer gid) {
         this.gid = gid;
     }
 
