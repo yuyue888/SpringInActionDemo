@@ -22,7 +22,6 @@ import java.util.Properties;
  */
 @Configuration
 public class MyBatisMapperScanner {
-    
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
@@ -35,4 +34,5 @@ public class MyBatisMapperScanner {
         mapperScannerConfigurer.setProperties(properties);
         return mapperScannerConfigurer;
     }
+
 }

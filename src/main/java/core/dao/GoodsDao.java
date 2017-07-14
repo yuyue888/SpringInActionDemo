@@ -8,9 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface GoodsDao {
     int insert( Goods pojo);
 
-    int insertSelective( Goods pojo);
-
-    int insertList(List<Goods> pojo);
+    List<Goods> getAllGoods();
 
     int update(Goods pojo);
 }

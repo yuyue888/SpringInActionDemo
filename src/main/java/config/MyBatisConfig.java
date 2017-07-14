@@ -3,7 +3,6 @@ package config;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -55,7 +54,7 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration(environment());
         configuration.addMappers("core.dao");
-        configuration.setMapUnderscoreToCamelCase(true);
+        //configuration.setMapUnderscoreToCamelCase(true);
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         // 添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
@@ -66,4 +65,6 @@ public class MyBatisConfig {
         sqlSessionFactoryBean.setDataSource(dataSource());
         return sqlSessionFactoryBean.getObject();
     }
+
+
 }

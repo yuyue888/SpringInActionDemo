@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="core.dao.GoodsDao">
     <!--auto generated Code-->
-    <resultMap id="AllColumnMap" type="core.entity.Goods">
+    <resultMap id="BaseResultMap" type="core.entity.Goods">
         <result column="gid" property="gid"/>
         <result column="gname" property="gname"/>
     </resultMap>
@@ -23,12 +23,17 @@
             #{gname}
         )
     </insert>
+
+    <select id="getAllGoods" resultMap="BaseResultMap">
+        SELECT * from goods ;
+    </select>
+
     <!--auto generated Code-->
-    <update id="update">
+    <update id="update" parameterType="core.entity.Goods">
         UPDATE goods
         <set>
-            <if test="goods.gid != null"> `gid` = #{goods.gid}, </if>
-            <if test="goods.gname != null"> `gname` = #{goods.gname} </if>
+            <if test="goods.gid != null">`gid` = #{goods.gid},</if>
+            <if test="goods.gname != null">`gname` = #{goods.gname}</if>
         </set>
         WHERE gid = #{goods.gid}
     </update>
