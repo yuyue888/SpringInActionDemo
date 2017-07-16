@@ -1,5 +1,7 @@
 package config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -7,6 +9,7 @@ import javax.servlet.*;
 import java.util.EnumSet;
 
 /**
+ *
  * Created by ssc on 2017/6/4.
  */
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
