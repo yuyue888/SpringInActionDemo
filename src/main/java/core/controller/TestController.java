@@ -1,6 +1,7 @@
 package core.controller;
 
 import core.entity.RestTest;
+import core.support.Req.PageReq;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -9,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/")
 public class TestController {
-    @RequestMapping(value= "/test/{test_name}",method = RequestMethod.GET)
-    public String getTestName(@PathVariable("test_name") String name){
+    @RequestMapping(value = "/test/{test_name}", method = RequestMethod.GET)
+    public String getTestName(@PathVariable("test_name") String name) {
         return name;
     }
 
-    @RequestMapping(value="/test/json",method = RequestMethod.GET)
-    public RestTest getRest(){
+    @RequestMapping(value = "/test/json", method = RequestMethod.GET)
+    public RestTest getRest() {
         RestTest restTest = new RestTest();
         restTest.setAge(20);
         restTest.setName("王二狗");
@@ -23,9 +24,14 @@ public class TestController {
         return restTest;
     }
 
-    @RequestMapping(value="/test/json",method = RequestMethod.POST)
-    public RestTest postTest(@RequestBody RestTest restTest){
+    @RequestMapping(value = "/test/json", method = RequestMethod.POST)
+    public RestTest postTest(@RequestBody RestTest restTest) {
         return restTest;
+    }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public PageReq testPageReq(PageReq req) {
+        return req;
     }
 
 }

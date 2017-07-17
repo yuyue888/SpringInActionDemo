@@ -1,13 +1,14 @@
 package config;
 
+import config.support.PageReqMethodArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -24,7 +25,7 @@ import java.util.List;
  * Created by ssc on 2017/6/3.
  */
 @Configuration
-@ComponentScan(basePackages = {"core","config"})
+@ComponentScan(basePackages = {"core", "config"})
 @EnableWebMvc
 @EnableScheduling//开启计划任务
 public class WebConfig extends WebMvcConfigurerAdapter {
@@ -43,9 +44,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new StandardServletMultipartResolver();
     }
 
+//    Spring4.3 版本后不需要手动启用
 //    @Bean
 //    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-//        return new PropertySourcesPlaceholderConfigurer();  //Spring4.3版本后不需要手动配置
+//        return new PropertySourcesPlaceholderConfigurer();
 //    }
 
     @Override
@@ -53,6 +55,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
+    /**
+     * 添加消息转换器
+     * @param converters
+     */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
@@ -63,4 +69,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         converters.add(jsonConverter);
         converters.add(converter);
     }
+
+    /**
+     * 添加参数转换器
+     * @param argumentResolvers
+     */
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        super.addArgumentResolvers(argumentResolvers);
+        PageReqMethodArgumentResolver reqMethodArgumentResolver = new PageReqMethodArgumentResolver();
+        argumentResolvers.add(reqMethodArgumentResolver);
+    }
+
+
 }
