@@ -2,6 +2,7 @@ package core.controller;
 
 import core.entity.RestTest;
 import core.support.Req.PageReq;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -32,6 +33,13 @@ public class TestController {
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public PageReq testPageReq(PageReq req) {
         return req;
+    }
+
+    @Value("${jdbc.url}")
+    private String url;
+    @RequestMapping(value = "/url", method = RequestMethod.GET)
+    public String testValue(){
+        return url;
     }
 
 }
