@@ -4,6 +4,12 @@ import config.support.PageReqMethodArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.format.datetime.DateFormatter;
+import org.springframework.format.datetime.DateFormatterRegistrar;
+import org.springframework.format.number.NumberFormatAnnotationFormatterFactory;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -80,6 +86,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         PageReqMethodArgumentResolver reqMethodArgumentResolver = new PageReqMethodArgumentResolver();
         argumentResolvers.add(reqMethodArgumentResolver);
     }
-
 
 }

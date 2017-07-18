@@ -13,10 +13,18 @@ import java.util.EnumSet;
  * Created by ssc on 2017/6/4.
  */
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    /**
+     * 在Spring里可以获取到 ApplicationContext , 在RootConfig中配置
+     * @return
+     */
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{RootConfig.class};
     }
 
+    /**
+     * 每一个 DispatcherServlet 都拥有自己的 WebApplicationContext，这个 WebApplicationContext 继承了根 WebApplicationContext 定义的所有 bean.
+     * @return
+     */
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{WebConfig.class};
     }
