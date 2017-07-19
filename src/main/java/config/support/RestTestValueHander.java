@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * HandlerMethodReturnValueHandler:处理返回对象的接口
+ * 需要去掉相应Controller中的@ResponseBody注解才生效
  * Created by ssc on 2017/7/19 0019.
  */
-public class DateFormatValueHander implements HandlerMethodReturnValueHandler {
+public class RestTestValueHander implements HandlerMethodReturnValueHandler {
     /**
      * 判断true时会调用该handler
      *
@@ -27,7 +28,6 @@ public class DateFormatValueHander implements HandlerMethodReturnValueHandler {
 
     /**
      * 自定义行为处理返回对象
-     * 需要去掉Controller中的@ResponseBody注解才生效
      *
      * @param returnValue
      * @param returnType
@@ -40,7 +40,7 @@ public class DateFormatValueHander implements HandlerMethodReturnValueHandler {
         mavContainer.setRequestHandled(true);//此次请求是否是由handler自己控制的，true表示本方法会响应请求。
         RestTest restTest = (RestTest) returnValue;
         HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
-        response.setContentType("text/plain;charset=utf-8");
-        response.getWriter().write("restTest:" );
+        response.setContentType("application/json;charset=utf-8");
+        response.getWriter().write("{\"restTest\":" + "\"" + restTest.getName() + "\"}");
     }
 }

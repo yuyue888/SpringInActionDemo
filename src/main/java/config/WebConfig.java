@@ -1,16 +1,11 @@
 package config;
 
-import config.support.DateFormatValueHander;
+import config.support.CustomDateMapper;
+import config.support.RestTestValueHander;
 import config.support.PageReqMethodArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.format.FormatterRegistry;
-import org.springframework.format.datetime.DateFormatter;
-import org.springframework.format.datetime.DateFormatterRegistrar;
-import org.springframework.format.number.NumberFormatAnnotationFormatterFactory;
-import org.springframework.format.support.DefaultFormattingConversionService;
-import org.springframework.format.support.FormattingConversionService;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -74,6 +69,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
         // 使用Jackson2Json JSON库 配置Json转换器
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
+        // 自定义类型转换（此处为转时间）
+        jsonConverter.setObjectMapper(new CustomDateMapper());
+
         converters.add(jsonConverter);
         converters.add(converter);
     }
@@ -92,7 +90,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
         super.addReturnValueHandlers(returnValueHandlers);
-        returnValueHandlers.add(new DateFormatValueHander());
+        returnValueHandlers.add(new RestTestValueHander());
     }
 
 
