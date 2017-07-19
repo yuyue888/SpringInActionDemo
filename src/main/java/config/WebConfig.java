@@ -1,5 +1,6 @@
 package config;
 
+import config.support.DateFormatValueHander;
 import config.support.PageReqMethodArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,6 +16,7 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -77,7 +79,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * 添加参数转换器
+     * 添加参数解析器
      * @param argumentResolvers
      */
     @Override
@@ -86,5 +88,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         PageReqMethodArgumentResolver reqMethodArgumentResolver = new PageReqMethodArgumentResolver();
         argumentResolvers.add(reqMethodArgumentResolver);
     }
+
+    @Override
+    public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
+        super.addReturnValueHandlers(returnValueHandlers);
+        returnValueHandlers.add(new DateFormatValueHander());
+    }
+
 
 }
