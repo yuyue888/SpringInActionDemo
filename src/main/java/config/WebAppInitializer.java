@@ -54,6 +54,8 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return super.registerServletFilter(servletContext, filter);
     }
 
-
-
+    @Override
+    protected void registerContextLoaderListener(ServletContext servletContext) {
+        super.registerContextLoaderListener(servletContext);
+    }
 }
