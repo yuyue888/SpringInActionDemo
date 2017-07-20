@@ -13,6 +13,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import java.util.List;
  * Created by ssc on 2017/7/11.
  */
 @Configuration
+@EnableTransactionManagement
 @PropertySource(value = {"classpath:/jdbc.properties"})
 public class MyBatisConfig {
 
@@ -66,5 +69,10 @@ public class MyBatisConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
+    @Bean("transactionManager")
+    public JtaTransactionManager jtaTransactionManager() {
+        JtaTransactionManager jtaTransactionManager = new JtaTransactionManager();
+        return jtaTransactionManager;
+    }
 
 }
