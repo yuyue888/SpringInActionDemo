@@ -33,11 +33,6 @@ public class TestController {
         return restTest;
     }
 
-    @Autowired
-    private GoodService goodService;
-    @RequestMapping(value="/goods",method = RequestMethod.GET)
-    public List<Goods> postTest(){
-        return goodService.findAllGoods();
-    }
+
 
 }

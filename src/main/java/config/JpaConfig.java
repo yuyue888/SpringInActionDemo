@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -17,6 +20,7 @@ import java.util.Properties;
  * Created by ssc on 2017/6/25.
  */
 @Configuration
+@EnableTransactionManagement
 @PropertySource(value = {"classpath:/jdbc.properties"})
 public class JpaConfig {
     @Value("${jdbc.url}")
@@ -53,9 +57,23 @@ public class JpaConfig {
         return factory.getObject();
     }
 
+    @Bean
+    public JpaTransactionManager jpaTransactionManager(EntityManagerFactory factory){
+        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+        jpaTransactionManager.setEntityManagerFactory(factory);
+        jpaTransactionManager.setGlobalRollbackOnParticipationFailure(false);
+        return jpaTransactionManager;
+    }
+
     private Properties properties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", dialect);
         return properties;
     }
+
+    @Bean
+    public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
 }

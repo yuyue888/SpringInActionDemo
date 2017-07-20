@@ -1,22 +1,24 @@
 package core.service;
 
 import core.entity.Goods;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import core.enums.CountModifyType;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ssc on 2017/6/26.
  */
-@Service
-public class GoodService {
-    @PersistenceContext
-    private EntityManager entityManager;
+public interface GoodService {
+    List<Goods> findAllGoods();
 
-    public List<Goods> findAllGoods(){
-        return entityManager.createQuery("FROM Goods g").getResultList();
-    }
+    List<Goods> findByName(String name);
+
+    Goods getGoodsById(Integer id);
+
+    Map<String, Object> addNewGoods(Goods goods);
+
+    Map<String, Object> modifyGoodsCount(Integer id, Integer count, CountModifyType type);
+
+    Map<String, Object> deleteGoods(Integer id) ;
 }

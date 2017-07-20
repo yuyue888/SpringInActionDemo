@@ -16,6 +16,12 @@ public class Goods {
     @Column(name = "gname")
     private String gname;
 
+    @Column(name = "gcount")
+    private Integer gcount;
+
+    @Column(name = "gprice")
+    private Double gprice;
+
     public Integer getGid() {
         return gid;
     }
@@ -30,5 +36,21 @@ public class Goods {
 
     public void setGname(String gname) {
         this.gname = gname;
+    }
+
+    public Integer getGcount() {
+        return gcount;
+    }
+
+    public void setGcount(Integer gcount) {
+        this.gcount = gcount;
+    }
+
+    public Double getGprice() {
+        return gprice;
+    }
+
+    public void setGprice(Double gprice) {
+        this.gprice = gprice;
     }
 }
