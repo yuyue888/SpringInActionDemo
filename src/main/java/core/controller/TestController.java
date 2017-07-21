@@ -1,12 +1,8 @@
 package core.controller;
 
-import core.entity.Goods;
 import core.entity.RestTest;
-import core.service.GoodService;
-import org.springframework.beans.factory.annotation.Autowired;
+import core.exceptions.GoodsNotExistException;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by ssc on 2017/6/4.
@@ -33,6 +29,9 @@ public class TestController {
         return restTest;
     }
 
-
+    @RequestMapping(value="/test/exception",method = RequestMethod.GET)
+    public void testException() throws GoodsNotExistException {
+        throw  new GoodsNotExistException("不存在的");
+    }
 
 }

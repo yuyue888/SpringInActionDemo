@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class CommonController {
-    @RequestMapping(value = "/*", method = RequestMethod.GET)
-    public String notFound() {
-        return "/404";
-    }
+//    @RequestMapping(value = "*", method = RequestMethod.GET)
+//    public String notFound() {
+//        return "/404";
+//    }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {

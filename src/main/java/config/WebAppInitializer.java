@@ -1,6 +1,7 @@
 package config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.*;
@@ -36,6 +37,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         super.customizeRegistration(registration);
         registration.addMapping("/");
         registration.setMultipartConfig(new MultipartConfigElement("tmp/SAD/uploads", 20 * 1024 * 1024, 40 * 1024 * 1024, 0));
+        registration.setInitParameter("throwExceptionIfNoHandlerFound" ,"true");
     }
 
     @Override

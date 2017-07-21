@@ -3,6 +3,7 @@ package config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -11,11 +12,14 @@ import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.accept.MediaTypeFileExtensionResolver;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -24,6 +28,7 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Java 配置Spring,替代web.xml
@@ -79,11 +84,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new StandardServletMultipartResolver();
     }
 
-
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
+//    /**
+//     * 当DisptacherServlet接收到了他匹配的请求，但是找不到相应的Controller，就会把这个请求返回给默认的处理（比如交给tomcat处理）
+//     * @param configurer
+//     */
+//    @Override
+//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//        configurer.enable();
+//    }
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -96,5 +104,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         converters.add(converter);
     }
 
+//    @Bean
+//    public SimpleMappingExceptionResolver simpleMappingExceptionResolver(){
+//        SimpleMappingExceptionResolver resolver = new SimpleMappingExceptionResolver();
+//        resolver.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        Properties mappings = new Properties();
+//        //key是异常类型,value是返回的视图名称
+//        mappings.setProperty(NoHandlerFoundException.class.getName(), "exception/404");
+//        resolver.setExceptionMappings(mappings);// None by default
+//        resolver.setExceptionAttribute("exception"); // Default is "exception"
+//        resolver.setWarnLogCategory(getClass().getName()); // No default
+//        return resolver;
+//    }
 
 }
