@@ -13,8 +13,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -69,10 +70,9 @@ public class MyBatisConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Bean("transactionManager")
-    public JtaTransactionManager jtaTransactionManager() {
-        JtaTransactionManager jtaTransactionManager = new JtaTransactionManager();
-        return jtaTransactionManager;
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
     }
 
 }

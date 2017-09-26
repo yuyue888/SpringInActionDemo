@@ -137,7 +137,12 @@
             <artifactId>persistence-api</artifactId>
             <version>1.0</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/javax.transaction/jta -->
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
@@ -203,7 +208,7 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/</path>
-                    <port>8081</port>
+                    <port>7000</port>
                     <uriEncoding>UTF-8</uriEncoding>
                 </configuration>
             </plugin>
