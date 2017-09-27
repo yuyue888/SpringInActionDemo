@@ -1,9 +1,11 @@
 package core.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by ssc on 2017/7/12.
  */
-public class Goods {
+public class Goods implements Serializable{
     private Integer gid;
 
     private String gname;

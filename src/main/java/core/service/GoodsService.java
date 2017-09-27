@@ -1,5 +1,6 @@
 package core.service;
 
+import config.support.redis.RedisCahce;
 import core.dao.GoodsDao;
 import core.entity.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class GoodsService {
         return goodsDao.insert(goods);
     }
 
+    @RedisCahce
     public List<Goods> getAllGoods() {
         return goodsDao.getAllGoods();
     }
