@@ -11,7 +11,6 @@ import java.lang.annotation.*;
  * <p>
  * </p>
  *
- * @author Yangjs
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
