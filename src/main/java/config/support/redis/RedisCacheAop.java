@@ -28,7 +28,7 @@ public class RedisCacheAop {
     /**
      * Pointcut 定义Pointcut，Pointcut的名称为aspectjMethod()，此方法没有返回值和参数 该方法就是一个标识，不进行调用
      */
-    @Pointcut("execution(* core..*(..)) && @annotation(config.support.redis.RedisCahce)")
+    @Pointcut("execution(* core..*(..)) && @annotation(config.support.redis.RedisCache)")
     private void aspectjMethod() {
     }
 
