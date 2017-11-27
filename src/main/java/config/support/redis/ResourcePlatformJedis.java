@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
  * 资源分发平台-通用缓存服务（实现：String、List类型，后续根据业务补充）
  * </p>
  *
- * @author Yangjs
  */
 @Repository
 public class ResourcePlatformJedis {

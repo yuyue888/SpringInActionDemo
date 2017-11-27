@@ -5,6 +5,7 @@
  */
 package config.support.redis;
 
+import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -17,13 +18,14 @@ import org.springframework.stereotype.Component;
  * <p>
  * </p>
  *
- * @author Yangjs
  */
 @Aspect
 @Component
 public class RedisCacheAop {
     @Autowired
     private ResourcePlatformJedis resourcePlatformJedis;
+
+    private static Logger logger = Logger.getLogger(RedisCacheAop.class);
 
     /**
      * Pointcut 定义Pointcut，Pointcut的名称为aspectjMethod()，此方法没有返回值和参数 该方法就是一个标识，不进行调用
@@ -66,15 +68,18 @@ public class RedisCacheAop {
         final String key = simpleKey.generate(pjp.getTarget(), signature.getMethod(), pjp.getArgs()).toString();
         Object retVal = resourcePlatformJedis.get(key);
         boolean isExpire = resourcePlatformJedis.isExpire(key);
-        if (retVal == null || isExpire == true) {
+        if (retVal == null || isExpire ) {
             synchronized (key.intern()) {
                 retVal = resourcePlatformJedis.get(key);
                 isExpire = resourcePlatformJedis.isExpire(key);
-                if (retVal == null || isExpire == true) {
+                if (retVal == null || isExpire ) {
                     retVal = pjp.proceed();
                     resourcePlatformJedis.set(key, retVal);
+                    logger.info("add to redis cache");
                 }
             }
+        }else {
+            logger.info("get data from redis cache");
         }
         return retVal;
     }

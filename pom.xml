@@ -207,6 +207,12 @@
                 <env>test</env>
             </properties>
         </profile>
+        <profile>
+            <id>local</id>
+            <properties>
+                <env>local</env>
+            </properties>
+        </profile>
     </profiles>
     <build>
         <filters>
