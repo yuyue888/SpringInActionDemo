@@ -60,10 +60,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //        return new PropertySourcesPlaceholderConfigurer();
 //    }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
+//    @Override
+//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//        configurer.enable();
+//    }
 
     /**
      * 添加消息转换器
