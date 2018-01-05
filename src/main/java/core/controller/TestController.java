@@ -1,11 +1,8 @@
 package core.controller;
 
 import core.entity.RestTest;
-import core.support.BusinessException;
 import core.support.Req.PageReq;
-import core.support.SimpleException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -39,8 +36,8 @@ public class TestController {
     }
 
     @RequestMapping(value = "/exception", method = RequestMethod.GET)
-    public void testException() throws BusinessException {
-        throw new SimpleException("error","test", HttpStatus.BAD_REQUEST);
+    public void testException() throws Exception {
+        throw new Exception("error");
     }
 
     @Value("${jdbc.url}")

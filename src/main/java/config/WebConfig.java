@@ -3,6 +3,7 @@ package config;
 import config.support.CustomDateMapper;
 import config.support.PageReqMethodArgumentResolver;
 import config.support.RestTestValueHander;
+import core.support.ExceptionFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +16,10 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.handler.HandlerExceptionResolverComposite;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.nio.charset.Charset;
@@ -124,4 +127,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
     }
+
+
 }
