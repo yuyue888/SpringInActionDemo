@@ -37,5 +37,11 @@
         </set>
         WHERE gid = #{goods.gid}
     </update>
+    <select id="getTotalCount" resultType="int">
+      select count(*) from goods;
+    </select>
+    <select id="findByName" resultMap="BaseResultMap">
+      select <include refid="all_column"></include> from goods where gname like #{"%"+name+"%" ,jdbcType=VARCHAR}
+    </select>
 </mapper>
 

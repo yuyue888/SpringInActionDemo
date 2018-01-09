@@ -3,10 +3,7 @@ package core.controller;
 import core.entity.Goods;
 import core.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,8 +23,18 @@ public class GoodsController {
         return goodsService.insert(goods);
     }
 
-    @RequestMapping(value = "/goods", method = RequestMethod.GET)
+    @RequestMapping(value = "/goods/all", method = RequestMethod.GET)
     public List<Goods> findGoods() {
         return goodsService.getAllGoods();
+    }
+
+    @RequestMapping(value = "/goods", method = RequestMethod.GET)
+    public List<Goods> findByName(@RequestParam("name") String name){
+        return goodsService.findByName(name);
+    }
+
+    @RequestMapping(value = "/goods/count", method = RequestMethod.GET)
+    public int getTotalCount() {
+        return goodsService.getTotalCount();
     }
 }

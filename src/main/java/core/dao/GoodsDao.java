@@ -10,5 +10,9 @@ public interface GoodsDao {
 
     List<Goods> getAllGoods();
 
+    List<Goods> findByName(String name);
+
+    int getTotalCount();
+
     int update(Goods pojo);
 }

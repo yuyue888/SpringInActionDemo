@@ -3,10 +3,15 @@ package config;
 import config.support.CustomDateMapper;
 import config.support.PageReqMethodArgumentResolver;
 import config.support.RestTestValueHander;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -30,6 +35,7 @@ import java.util.List;
 @ComponentScan(basePackages = {"core", "config"})
 @EnableWebMvc
 @EnableScheduling//开启计划任务
+@EnableCaching
 @EnableAspectJAutoProxy//开启aop
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -124,4 +130,19 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
     }
+
+    @Bean
+    public CacheManager ehCacheManager() {
+        return new EhCacheCacheManager(ehCacheCacheManager().getObject());
+    }
+
+    @Bean
+    public EhCacheManagerFactoryBean ehCacheCacheManager() {
+        EhCacheManagerFactoryBean cmfb = new EhCacheManagerFactoryBean();
+        cmfb.setConfigLocation(new ClassPathResource("ehcache.xml"));
+        cmfb.setShared(true);
+        return cmfb;
+    }
+
+
 }

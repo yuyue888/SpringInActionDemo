@@ -2,7 +2,6 @@ package config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-import org.springframework.web.util.Log4jConfigListener;
 
 import javax.servlet.*;
 import java.util.EnumSet;
@@ -56,6 +55,5 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     protected void registerContextLoaderListener(ServletContext servletContext) {
         super.registerContextLoaderListener(servletContext);
-        servletContext.addListener(new Log4jConfigListener());
     }
 }

@@ -58,7 +58,7 @@ public class MyBatisConfig {
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration(environment());
-        configuration.addMappers("core.dao");
+//        configuration.addMappers("core.dao");
         //在控制台输出sql
         configuration.setLogImpl(StdOutImpl.class);
         //configuration.setMapUnderscoreToCamelCase(true);
