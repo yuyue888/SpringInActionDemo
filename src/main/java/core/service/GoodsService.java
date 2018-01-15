@@ -5,7 +5,10 @@ import core.entity.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 
 @Service
@@ -14,6 +17,7 @@ public class GoodsService {
     @Autowired
     private GoodsDao goodsDao;
 
+    @Transactional
     public int insert(Goods goods) {
         return goodsDao.insert(goods);
     }
@@ -36,4 +40,11 @@ public class GoodsService {
     public int update(Goods pojo) {
         return goodsDao.update(pojo);
     }
+
+    @PostConstruct
+    public void postProcess(){}
+
+    @PreDestroy
+    public void preDestroy(){}
+
 }

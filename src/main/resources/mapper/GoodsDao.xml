@@ -19,8 +19,8 @@
             `gid`,
             `gname`
         ) VALUES (
-            #{gid},
-            #{gname}
+            #{gid,jdbcType=INTEGER},
+            #{gname,jdbcType=VARCHAR}
         )
     </insert>
 
