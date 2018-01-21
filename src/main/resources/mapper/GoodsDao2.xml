@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="core.dao.GoodsDao">
+<mapper namespace="core.dao.GoodsDao2">
     <!--
-    - mybatis缓存配置
+    - mybatis二级缓存配置
     映射语句文件中的所有 select 语句将会被缓存。
     映射语句文件中的所有 insert,update 和 delete 语句会刷新缓存。
     缓存会使用 Least Recently Used(LRU,最近最少使用的)算法来收回。
@@ -51,41 +51,17 @@
         `gprice`
     </sql>
 
-    <!--auto generated Code-->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="goods.gid" parameterType="core.entity.Goods">
-        INSERT INTO goods (
-            `gid`,
-            `gname`,
-            `gcount`,
-            `gprice`
-        ) VALUES (
-            #{gid,jdbcType=INTEGER},
-            #{gname,jdbcType=VARCHAR},
-            #{gcount,jdbcType=INTEGER},
-            #{gprice,jdbcType=DOUBLE}
-        )
-    </insert>
-
-    <select id="getAllGoods" resultMap="BaseResultMap">
-        SELECT * from goods ;
-    </select>
 
     <!--auto generated Code-->
     <update id="update" parameterType="core.entity.Goods">
         UPDATE goods
         <set>
-            <if test="goods.gid != null">`gid` = #{goods.gid},</if>
-            <if test="goods.gname != null">`gname` = #{goods.gname}</if>
-            <if test="goods.gcount != null">`gcount` = #{goods.gcount}</if>
-            <if test="goods.gprice != null">`gprice` = #{goods.gprice}</if>
+            <if test="gid != null">`gid` = #{gid},</if>
+            <if test="gname != null">`gname` = #{gname},</if>
+            <if test="gcount != null">`gcount` = #{gcount},</if>
+            <if test="gprice != null">`gprice` = #{gprice}</if>
         </set>
-        WHERE gid = #{goods.gid}
+        WHERE gid = #{gid}
     </update>
-    <select id="getTotalCount" resultType="int">
-      select count(*) from goods;
-    </select>
-    <select id="findByName" parameterType="java.lang.String" resultMap="BaseResultMap" >
-      select <include refid="all_column"></include> from goods where gname like concat(concat('%',#{name,jdbcType=VARCHAR}),'%')
-    </select>
 </mapper>
 

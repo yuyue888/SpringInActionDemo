@@ -8,6 +8,10 @@ public class Goods {
 
     private String gname;
 
+    private Integer gcount;
+
+    private Double gprice;
+
     public Integer getGid() {
         return gid;
     }
@@ -22,5 +26,21 @@ public class Goods {
 
     public void setGname(String gname) {
         this.gname = gname;
+    }
+
+    public Integer getGcount() {
+        return gcount;
+    }
+
+    public void setGcount(Integer gcount) {
+        this.gcount = gcount;
+    }
+
+    public Double getGprice() {
+        return gprice;
+    }
+
+    public void setGprice(Double gprice) {
+        this.gprice = gprice;
     }
 }

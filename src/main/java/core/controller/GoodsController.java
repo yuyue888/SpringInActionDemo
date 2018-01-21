@@ -33,6 +33,11 @@ public class GoodsController {
         return goodsService.findByName(name);
     }
 
+    @RequestMapping(value = "/goods/{id}", method = RequestMethod.PUT)
+    public int addGoods(@PathVariable("id")String id ,@RequestBody Goods goods) {
+        return goodsService.update2(goods);
+    }
+
     @RequestMapping(value = "/goods/count", method = RequestMethod.GET)
     public int getTotalCount() {
         return goodsService.getTotalCount();

@@ -3,6 +3,7 @@ package config;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.session.LocalCacheScope;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
@@ -61,6 +62,11 @@ public class MyBatisConfig {
 //        configuration.addMappers("core.dao");
         //在控制台输出sql
         configuration.setLogImpl(StdOutImpl.class);
+        //是否开启（二级）缓存，默认true
+        configuration.setCacheEnabled(false);
+        //（一级）缓存作用域，默认SESSION
+        configuration.setLocalCacheScope(LocalCacheScope.SESSION);
+
         //configuration.setMapUnderscoreToCamelCase(true);
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         // 添加XML目录

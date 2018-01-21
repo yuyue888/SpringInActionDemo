@@ -4,7 +4,7 @@ import java.util.List;
 import core.entity.Goods;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
+//@Mapper
 public interface GoodsDao {
     int insert( Goods pojo);
 
