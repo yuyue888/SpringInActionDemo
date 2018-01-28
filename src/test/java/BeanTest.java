@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Collections;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by ssc on 2017/6/4.
  */
@@ -17,6 +20,7 @@ public class BeanTest {
 
     @Test
     public void test(){
+        ConcurrentLinkedQueue
         System.out.println("bean name:"+testService.getTestBean());
     }
 
