@@ -17,7 +17,7 @@ public class AlertService {
 
     public void sendMsgAndAlert(String msg){
         Message message = new Message(msg.getBytes(),new MessageProperties());
-        rabbitTemplate.send("amp.direct","myqueue" ,message);
+        rabbitTemplate.send("amp.direct","queue" ,message);
     }
 
     public void sendObject(Object o){
@@ -26,7 +26,7 @@ public class AlertService {
     }
 
     public String receiveMsg(){
-        Message message = rabbitTemplate.receive();
+        Message message = rabbitTemplate.receive("queue");
         if(message == null ){
             return "";
         }

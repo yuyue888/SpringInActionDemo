@@ -6,6 +6,7 @@ import org.springframework.amqp.core.MessageListener;
 /**
  * Created by ssc on 2018/1/28.
  */
+
 public class MQMessageListener implements MessageListener{
     @Override
     public void onMessage(Message message) {
