@@ -62,7 +62,7 @@ public class MyBatisConfig {
 //        configuration.addMappers("core.dao");
         //在控制台输出sql
         configuration.setLogImpl(StdOutImpl.class);
-        //是否开启（二级）缓存，默认true
+        //是否开启（二级）缓存，默认true;建议关闭mybatis二级缓存，不支持联表和分布式的情况
         configuration.setCacheEnabled(false);
         //（一级）缓存作用域，默认SESSION
         configuration.setLocalCacheScope(LocalCacheScope.SESSION);
