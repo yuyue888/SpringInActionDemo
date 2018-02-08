@@ -4,10 +4,11 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by ssc on 2018/1/28.
  */
-@Component
 public class MQMessageListener implements MessageListener{
     @Override
     public void onMessage(Message message) {
@@ -16,7 +17,8 @@ public class MQMessageListener implements MessageListener{
         try
         {
             str = new String(message.getBody(), "UTF-8");
-            System.out.print("=====获取消息:"+str);
+            TimeUnit.SECONDS.sleep(3); //do something
+            System.out.println("=====获取消息:"+str);
         }catch(Exception e)
         {
             e.printStackTrace();
