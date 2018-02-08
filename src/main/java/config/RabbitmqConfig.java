@@ -1,5 +1,6 @@
 package config;
 
+import core.controller.MQMessageListener;
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.ExchangeBuilder;
 import org.springframework.amqp.core.MessageListener;
@@ -56,16 +57,16 @@ public class RabbitmqConfig {
 
     @Bean
     public Exchange directExchange(){
-        ExchangeBuilder exchangeBuilder = new ExchangeBuilder("amq.direct","direct");
+        ExchangeBuilder exchangeBuilder = new ExchangeBuilder("hello-exchange","direct");
         return exchangeBuilder.build();
     }
 
     @Bean
     public RabbitTemplate rabbitTemplate(){
         RabbitTemplate template = new RabbitTemplate();
-//        template.setExchange("amp.direct");
-//        template.setQueue("myqueue");
-        template.setRoutingKey("queue");
+        template.setExchange("hello-exchange");
+        template.setQueue("myqueue");
+        template.setRoutingKey("myqueue");
         template.setConnectionFactory(connectionFactory());
         return template;
     }
@@ -74,18 +75,15 @@ public class RabbitmqConfig {
     public SimpleMessageListenerContainer messageListenerContainer() {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory());
-        container.setChannelTransacted(true);
-        container.setQueueNames("queue");
+//        container.setChannelTransacted(true);
+        container.setQueueNames("myqueue");
         container.setMessageListener(exampleListener());
         return container;
     }
 
     @Bean
     public MessageListener exampleListener() {
-        return message -> {
-            //amqpReceiver.onMessage(message);
-            System.out.print("接收消息：" + new String(message.getBody()));
-        };
+        return new MQMessageListener();
     }
 
 }
