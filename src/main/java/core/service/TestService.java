@@ -16,7 +16,7 @@ import java.util.Date;
 public class TestService {
     @Autowired
     private Test test;
-
+    
     public String getTestBean(){
         return test.getTestName();
     }
